@@ -1,10 +1,35 @@
-# init
+from statistics import median
 
 class Array:
-    pass        #-Nothing happens
+    '''
+    This is a single-dimensional numeric
+    array for scientific computing.
 
-    def __init__(self, data):   # self is nothing 
-        self.data = data # bind data to self     - This whole section is considered the constructor (construct an object)
+    This array will compute lots of
+    basic statistics.
+
+    Parameters
+    ----------
+    data: list
+        List of numbers
+    '''
+
+    
+    
+    def __init__(self, data):
+        self.data = data
 
     def sum(self):
-            return sum(self.data)       #sum is builtin python function
+        return sum(self.data)
+
+    def max(self):
+        return max(self.data)
+
+    def min(self):
+        return min(self.data)
+
+    def mean(self):
+        return self.sum() / len(self.data)
+
+    def median(self):
+        return median(self.data)

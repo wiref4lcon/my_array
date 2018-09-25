@@ -5,4 +5,6 @@ class Array:
 
     def __init__(self, data):   # self is nothing 
         self.data = data # bind data to self     - This whole section is considered the constructor (construct an object)
-        
+
+    def sum(self):
+            return sum(self.data)       #sum is builtin python function

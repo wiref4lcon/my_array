@@ -98,6 +98,7 @@ class Array:
         final_str = ''
         # TODO: validate against even/odd number
         # TODO: CHeck if you array is a float. Limit decimals with an option
+        # TODO: If dtype is 'b' then output True or False for each value
         half_max = options_max_values // 2
         if len(self) < options_max_values:
             for val in self.data:
@@ -139,7 +140,14 @@ class Array:
 
     def __add__(self, other):
         # return an array that has `value` added to each element
-        data = [val + other for val in self]
+        if isinstance(other, (bool, int, float)):
+            data = [val + other for val in self]
+        elif isinstance(other, Array):
+            if len(self) != len(other):
+                raise ValueError(f'Arrays must be same length {len(self)} != {len(other)}')
+            data = [val1 + val2 for val1, val2 in zip(self, other)]
+        else:
+            raise TypeError('other must be a bool, int, float, or an Array')
         return Array(data)
 
     def __sub__(self, value):
@@ -173,3 +181,22 @@ class Array:
         return Array(data)
 
     # TODO: implement the right-side operators like __radd__
+    # TODO: implement array to array arithmetic operations just like we did in __add__
+
+    # Implement >
+
+    def __gt__(self, other):
+        # return an array that has `value` added to each element
+        if isinstance(other, (bool, int, float)):
+            data = [val > other for val in self]
+        elif isinstance(other, Array):
+            if len(self) != len(other):
+                raise ValueError(f'Arrays must be same length {len(self)} != {len(other)}')
+            data = [val1 > val2 for val1, val2 in zip(self, other)]
+        else:
+            raise TypeError('other must be a bool, int, float, or an Array')
+        return Array(data)
+
+    # TODO: Implement the rest of the comparison operators
+
+    # Use collection module to find mode

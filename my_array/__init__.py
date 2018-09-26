@@ -1,3 +1,5 @@
+#!/usr/local/bin/python3.7
+
 from statistics import median
 from array import array
 from . import _utils
